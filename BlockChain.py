@@ -52,3 +52,19 @@ class BlockChain(object):
     def latest_block(self):
         """ returns the last block in the chain """
         return self.chain[-1]
+
+    def mine_block(self, miner):
+        self.get_data(
+            sender="0",
+            receiver=miner,
+            quantity=1
+        )
+
+        last_block = self.latest_block
+        last_proof_number = last_block.proof_number
+        proof_number = self.proof_of_work(last_proof_number)
+
+        last_hash = last_block.compute_hash
+        block = self.build_block(proof_number, last_hash)
+
+        return vars(block)

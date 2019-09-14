@@ -26,11 +26,22 @@ class BlockChain(object):
    @staticmethod
     def confirm_validity(block, previous_block):
         """ checks weather the blockchain is valid """
-        pass
+        if previous_block.index + 1 != block.index:
+            return False
+        elif previous_block.compute_hash != block.previous_hash:
+            return False
+        elif block.timestamp <= previous_block.timestamp:
+            return False
+        return True
 
     def get_data(self, sender, receiver, amount):
         """ declares data of transactions """
-        pass
+        self.current_data.append({
+            'sender': sender,
+            'receiver': receiver,
+            'amount': amount
+        })
+        return True
 
     @staticmethod
     def proof_of_work(last_proof):
@@ -40,4 +51,4 @@ class BlockChain(object):
     @property
     def latest_block(self):
         """ returns the last block in the chain """
-        pass
+        return self.chain[-1]

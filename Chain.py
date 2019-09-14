@@ -1,6 +1,6 @@
 from Block import Block
 
-class BlockChain(object):
+class Chain(object):
     def __init__(self):
         self.chain = []
         self.current_data = []
@@ -23,7 +23,7 @@ class BlockChain(object):
         self.chain.append(block)
         return block
    
-   @staticmethod
+    @staticmethod
     def confirm_validity(block, previous_block):
         """ checks weather the blockchain is valid """
         if previous_block.index + 1 != block.index:
@@ -54,14 +54,10 @@ class BlockChain(object):
         return self.chain[-1]
 
     def mine_block(self, miner):
-        self.get_data(
-            sender="0",
-            receiver=miner,
-            quantity=1
-        )
+        self.get_data(sender="0",receiver=miner,amount=1)
 
         last_block = self.latest_block
-        last_proof_number = last_block.proof_number
+        last_proof_number = last_block.get_proof_number()
         proof_number = self.proof_of_work(last_proof_number)
 
         last_hash = last_block.compute_hash

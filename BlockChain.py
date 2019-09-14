@@ -1,24 +1,43 @@
+from Block import Block
+
 class BlockChain(object):
     def __init__(self):
-    #building the chain
+        self.chain = []
+        self.current_data = []
+        self.nodes = set()
+        self.build_genesis()
+
     def build_genesis(self):
-        pass
-    #creating the initial block
+        """ creating the inital block """
+        self.build_block(proof_number=0,previous_hash=0)
+
     def build_block(self, proof_number, previous_hash):
-        pass
-    #builds new block and adds to the chain
+        """ build new block and adds to the chain """
+        block = Block(
+            index = len(self.chain),
+            proof_number = proof_number,
+            previous_hash = previous_hash,
+            data = self.current_data
+        )
+        self.current_data = []
+        self.chain.append(block)
+        return block
+   
    @staticmethod
     def confirm_validity(block, previous_block):
+        """ checks weather the blockchain is valid """
         pass
-    #checks whether the blockchain is valid
+
     def get_data(self, sender, receiver, amount):
+        """ declares data of transactions """
         pass
-    # declares data of transactions
+
     @staticmethod
     def proof_of_work(last_proof):
+        """ adds to the security of the blockchain """
         pass
-    #adds to the security of the blockchain
+
     @property
     def latest_block(self):
+        """ returns the last block in the chain """
         pass
-    #returns the last block in the chain

@@ -36,17 +36,29 @@ class Chain(object):
         return True
 
     def get_data(self, sender, receiver, amount):
+<<<<<<< HEAD:Chain.py
         """ declares data of transactions """
+=======
+>>>>>>> testBranch:BlockChain.py
         self.current_data.append({
             'sender': sender,
             'receiver': receiver,
             'amount': amount
         })
         return True
+<<<<<<< HEAD:Chain.py
+=======
+
+    @staticmethod
+    def proof_of_work(last_proof):
+        """ adds to the security of the blockchain """
+        pass
+>>>>>>> testBranch:BlockChain.py
 
     @property
     def latest_block(self):
         """ returns the last block in the chain """
+<<<<<<< HEAD:Chain.py
         return self.chain[-1]
 
     def mine_block(self, miner):
@@ -77,3 +89,6 @@ class Chain(object):
             return True
         else:
             return False
+=======
+        return self.chain[-1]
+>>>>>>> testBranch:BlockChain.py

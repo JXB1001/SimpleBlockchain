@@ -15,8 +15,6 @@ if __name__ == "__main__":
 
     block = blockchain.mine_block("Miner")
 
-    block = blockchain.mine_block("Andrew")
-
     print("Mining Sucuessful")
     print(blockchain.chain)
     print("\n\n")

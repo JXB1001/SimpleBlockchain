@@ -1,5 +1,6 @@
 import time
 import hashlib
+import random
 
 class Block(object):
     def __init__(self, index, proof_number, previous_hash, data):
@@ -14,6 +15,9 @@ class Block(object):
     def get_proof_number(self):
         return self.block_data["proof_number"]
 
+    def randomise_proof_number(self):
+        self.block_data["proof_number"] = random.randint(0, 10**30)
+
     def compute_hash(self):
         """ producing a crytographic hash of each block """
         string_block = ""
@@ -21,6 +25,9 @@ class Block(object):
             string_block += str(data) + " "
             
         return hashlib.sha256(string_block.encode()).hexdigest()
+
+    def print(self):
+        print(self.block_data)
         
   
 

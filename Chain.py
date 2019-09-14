@@ -1,4 +1,5 @@
 from Block import Block
+import timeit
 
 class Chain(object):
     def __init__(self):
@@ -43,11 +44,6 @@ class Chain(object):
         })
         return True
 
-    @staticmethod
-    def proof_of_work(last_proof):
-        """ adds to the security of the blockchain """
-        pass
-
     @property
     def latest_block(self):
         """ returns the last block in the chain """
@@ -57,10 +53,27 @@ class Chain(object):
         self.get_data(sender="0",receiver=miner,amount=1)
 
         last_block = self.latest_block
-        last_proof_number = last_block.get_proof_number()
-        proof_number = self.proof_of_work(last_proof_number)
+        proof_number = 0
+        last_hash = last_block.compute_hash()
 
-        last_hash = last_block.compute_hash
+        print("Starting to mine a block...")
+        start = timeit.default_timer()
         block = self.build_block(proof_number, last_hash)
+        while not self.valid(block):
+            block.randomise_proof_number()
+        stop = timeit.default_timer()
+        time = stop - start
+        print("Mining complete.")
+        print("Mining completed in %f" % time)
 
         return vars(block)
+
+    @staticmethod
+    def valid(block):
+        zeroNumber = 4
+        block_hash = block.compute_hash()
+        check = block_hash[0:zeroNumber]
+        if(check == ("0"*zeroNumber)):
+            return True
+        else:
+            return False

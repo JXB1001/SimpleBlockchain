@@ -7,18 +7,20 @@ if __name__ == "__main__":
     print("Starting the Program")
     print(blockchain.chain)
 
-    last_block = blockchain.latest_block
-    last_proof_number = last_block.get_proof_number()
-    proof_number = blockchain.proof_of_work(last_proof_number)
-
     blockchain.get_data(
         sender="0",
         receiver="Jacob",
         amount=1
     )
 
-    last_hash = last_block.compute_hash()
-    block = blockchain.mine_block("Jacob")
+    block = blockchain.mine_block("Miner")
+
+    block = blockchain.mine_block("Andrew")
 
     print("Mining Sucuessful")
     print(blockchain.chain)
+    print("\n\n")
+    for block in blockchain.chain:
+        block.print()
+        print("")
+

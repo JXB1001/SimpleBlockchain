@@ -13,7 +13,15 @@ def hello():
 
 @app.route("/chain")
 def getChain():
-    return "myChain"
+    chain_string = ""
+    for block in myBlockChain.chain:
+        chain_string += str(block)
+        chain_string += '\n'
+    print(chain_string)
+    return chain_string
 
 if __name__ == "__main__":
+    myBlockChain = Chain.Chain()
+    myBlockChain.mine_block("The Miner")
+    myBlockChain.mine_block("Hello")
     app.run()

@@ -26,8 +26,8 @@ class Block(object):
             
         return hashlib.sha256(string_block.encode()).hexdigest()
 
-    def print(self):
-        print(self.block_data)
+    def __str__(self):
+        return str(self.block_data)
         
   
 
